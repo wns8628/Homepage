@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/head  %>
+</head>
+<body  class="body">
+  <% include ../partials/nav %>
+<div>
+<!-- -->
+  <div class="content">
+    <span class="main_font">Test Homepage</span>
+    <a href="/about"><button type="button" class="btn btn-danger rounded-circle main_sub_font" >about</button></a>
+  </div>
+  <div id="main_div" class="container row mx-auto home home-welcome row">
+    <% if(errors.login){ %>
+     <script type="text/javascript">
+       alert("권한이 없습니다.")
+     </script>
+    <% } %>
+    <!-- <div style="width:0px; margin:auto;">
+       <img id="main_img" src="/img/main_img.jpg" class="" alt="메인이미지" >
+    </div> -->
+     <!-- <div class="img-cover"></div> -->
+  </div>
+<!--  -->
+
+<!--  -->
+<hr>
+    <div class="main_body container mx-auto row">
+      <!--  -->
+      <div id="main_post_title" class="col-sm-4">
+          <div class="row">
+            <h3 class="col-9">
+              <a href="/posts" id="more_color" >공지사항</a>
+            </h3>
+            <h4 class="col-3">
+              <a href="/posts?group=1" id="more_color">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>more
+              </a>
+            </h4>
+          </div>
+        <table class="table table-hover table-sm posts">
+          <thead>
+          </thead>
+            <tbody>
+              <% if(posts == null || posts.length == 0){ %>
+                <tr>
+                  <td class="noData" colspan=100> 글이 없습니다. </td>
+                </tr>
+                <% } %>
+                <% Notice.forEach(function(post) { %>
+                  <tr>
+                    <td class="title">
+                      <a  class="title" href="/posts/<%= post._id %>?<%= urlQuery %>"><div class="ellipsis"><%= post.title %>&nbsp;</div><span class="comments"></a>
+                      <a  class="comments" href="/posts/<%= post._id %>?<%= urlQuery %>">(<%= post.comment.length %>)</a></span>
+                    </td>
+                    <td class="adate">
+                        <%= post.createdDate %>
+                    </td>
+                  </tr>
+                    <% }) %>
+              </tbody>
+           </table>
+         </div>
+      <!--  -->
+
+      <div id="main_post_title" class="col-sm-4">
+          <div class="row">
+            <h3 class="col-9">
+              <a href="/posts" id="more_color" >최근 게시물</a>
+            </h3>
+            <h4 class="col-3">
+              <a href="/posts" id="more_color">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>more
+              </a>
+            </h4>
+          </div>
+        <table class="table table-hover table-sm posts">
+          <thead>
+          </thead>
+            <tbody>
+              <% if(posts == null || posts.length == 0){ %>
+                <tr>
+                  <td class="noData" colspan=100> 글이 없습니다. </td>
+                </tr>
+                <% } %>
+                <% posts.forEach(function(post) { %>
+                  <tr>
+                    <td class="title">
+                      <a class="title" href="/posts/<%= post._id %>?<%= urlQuery %>"><div class="ellipsis"><%= post.title %>&nbsp;</div><span class="comments"></a>
+                        <a  class="comments" href="/posts/<%= post._id %>?<%= urlQuery %>">(<%= post.comment.length %>)</a></span>
+                      </td>
+                      <td class="adate">
+                        <%= post.createdDate %>
+                      </td>
+                    </tr>
+                    <% }) %>
+              </tbody>
+           </table>
+         </div>
+         <div id="main_right" class="col-sm-4">
+              advertisement
+         </div>
+
+<!--  2번째줄 여기부터  -->
+
+         <div id="main_post_title" class="col-sm-4">
+             <div class="row">
+               <h3 class="col-9">
+                 <a href="/posts" id="more_color" >커뮤니티</a>
+               </h3>
+               <h4 class="col-3">
+                 <a href="/posts?group=2" id="more_color">
+                   <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>more
+                 </a>
+               </h4>
+             </div>
+           <table class="table table-hover table-sm posts">
+             <thead>
+             </thead>
+               <tbody>
+                 <% if(posts == null || posts.length == 0){ %>
+                   <tr>
+                     <td class="noData" colspan=100> 글이 없습니다. </td>
+                   </tr>
+                   <% } %>
+                   <% Community.forEach(function(post) { %>
+                     <tr>
+                       <td class="title">
+                         <a  class="title" href="/posts/<%= post._id %>?<%= urlQuery %>"><div class="ellipsis"><%= post.title %>&nbsp;</div><span class="comments"></a>
+                         <a  class="comments" href="/posts/<%= post._id %>?<%= urlQuery %>">(<%= post.comment.length %>)</a></span>
+                       </td>
+                       <td class="adate">
+                           <%= post.createdDate %>
+                       </td>
+                     </tr>
+                       <% }) %>
+                 </tbody>
+              </table>
+            </div>
+
+            <div id="main_post_title" class="col-sm-4">
+                <div class="row">
+                  <h3 class="col-9">
+                    <a href="/posts" id="more_color" >질문과 답변</a>
+                  </h3>
+                  <h4 class="col-3">
+                    <a href="/posts?group=3" id="more_color">
+                      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>more
+                    </a>
+                  </h4>
+                </div>
+              <table class="table table-hover table-sm posts">
+                <thead>
+                </thead>
+                  <tbody>
+                    <% if(posts == null || posts.length == 0){ %>
+                      <tr>
+                        <td class="noData" colspan=100> 글이 없습니다. </td>
+                      </tr>
+                      <% } %>
+                      <% QnA.forEach(function(post) { %>
+                        <tr>
+                          <td class="title">
+                            <a  class="title" href="/posts/<%= post._id %>?<%= urlQuery %>"><div class="ellipsis"><%= post.title %>&nbsp;</div><span class="comments"></a>
+                            <a  class="comments" href="/posts/<%= post._id %>?<%= urlQuery %>">(<%= post.comment.length %>)</a></span>
+                          </td>
+                          <td class="adate">
+                              <%= post.createdDate %>
+                          </td>
+                        </tr>
+                          <% }) %>
+                    </tbody>
+                 </table>
+               </div>
+
+               <div class="col-sm-4">
+                 <iframe class="youtube" src="https://www.youtube.com/embed/fNc6kDLUiV4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="padding-left: 5px; padding-right: 5px;"></iframe>
+               </div>
+
+        <!-- 여기서부터 3번쨰줄  -->
+
+         <div class="col-sm-2 link_img_div">
+              <a href="https://www.youtube.com/">
+                <img class="link_img" src="/img/youtube.png" alt="유튜브이미지">
+                <h2>Youtube</h2>
+                <p>I do not have anything yet, so I put a lot of links on the internet.</p>
+              </a>
+         </div>
+         <div class="col-sm-2 link_img_div">
+              <a href="https://www.naver.com/">
+                <img class="link_img" src="/img/naver.png" alt="네이버이미지">
+                <h2>Naver</h2>
+                <p>I do not have anything yet, so I put a lot of links on the internet.</p>
+              </a>
+         </div>
+         <div class="col-sm-2 link_img_div">
+              <a href="http://www.dogdrip.net/">
+                <img class="link_img" src="/img/dogdrip.png" alt="개드립이미지">
+                <h2>Dogdrip</h2>
+                <p>I do not have anything yet, so I put a lot of links on the internet.</p>
+              </a>
+         </div>
+         <div class="col-sm-2 link_img_div">
+              <a href="http://www.tu.ac.kr/default3/main/main.jsp">
+                <img class="link_img" src="/img/university.png" alt="대학교이미지">
+                <h2>Tongmyong</h2>
+                <p>I do not have anything yet, so I put a lot of links on the internet.</p>
+              </a>
+         </div>
+         <div class="col-sm-2 link_img_div">
+              <a href="https://github.com/wns8628/v_myapp_last">
+                <img class="link_img" src="/img/github.png" alt="깃허브이미지">
+                <h2>Github</h2>
+                <p>I do not have anything yet, so I put a lot of links on the internet.</p>
+              </a>
+         </div>
+         <div class="col-sm-2 link_img_div">
+              <a href="https://www.google.co.kr/">
+                <img class="link_img" src="/img/google.png" alt="구글이미지">
+                <h2>Google</h2>
+                <p>I do not have anything yet, so I put a lot of links on the internet.</p>
+              </a>
+         </div>
+         <!--  -->
+     </div>
+   </div>
+   <footer>
+     <% include ../partials/footer %>
+   </footer>
+  </body>
+</html>

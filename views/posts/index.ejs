@@ -1,0 +1,153 @@
+<!-- views/posts/index.ejs -->
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <% include ../partials/head %>
+ </head>
+ <body class="body">
+  <% include ../partials/nav %>
+  <div class="row container mx-auto mid_fix_body">
+   <div class="col-sm-3 ac_parent">
+     <div class="about_col">
+      <div class="row">
+
+       <div id="paper"  class="col-sm-12">
+         <h2>게시판</h2>
+       </div>
+
+       <div class="col-sm-3"></div>
+       <div class="col-sm-8">
+         <a class="btn btn-outline-success btn-lg btn-block Writing" href="/posts/new">글쓰기
+           <span class="badge badge-pill badge-success">Go!</span>
+         </a>
+       </div>
+
+       <div class="col-sm-3"></div>
+       <div class="col-sm-8" data-spy="scroll">
+         <% include ./partials/nav ﻿%>
+       </div>
+
+     </div>
+    </div>
+  </div>
+
+<!-- 가운데맞출려면 container 넣어~ -->
+    <div class="post post-index col-sm-9 sb_parent">
+     <div class="showBody">
+       <div class="postshowname">
+         <% include ./partials/header ﻿%>
+       </div>
+
+      <table class="table table-striped posts">
+        <thead>
+          <tr>
+            <th class="num">Num</th>
+            <th class="title">제목</th>
+            <th class="view">조회수</th>
+            <th class="author">작성자</th> <!-- 1 -->
+            <th class="date">날짜</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if(posts == null || posts.length == 0){ %>
+            <tr>
+              <td class="noData" colspan=100> 글이 없습니다. </td>
+            </tr>
+            <% } %>
+            <% posts.forEach(function(post) { %>
+              <tr>
+                <td class="num"><%= post.numId %></td>
+                <td class="title">
+                    <a class="title" href="/posts/<%= post._id %>?<%= urlQuery %>"><div class="ellipsis"><%= post.title %></div><span class="comments ellipsisComment"></a>
+                    <a  class="comments" href="/posts/<%= post._id %>?<%= urlQuery %>">(<%= post.comment.length %>)</a></span>
+                  </td>
+                  <td class="view"><%= post.views %></td>
+                  <td class="author"> <!-- 2 -->
+                    <div class="ellipsis"><%= post.author ? post.author.name : "" %></div> <!-- 3 -->
+                  </td>                        <!-- 작성자있는경우 이거              없으면 공백-->
+                  <td class="date">
+                    <%= post.createdDate %>
+                  </td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+
+        <div class="row">
+          <!-- <div class="col-3"></div> -->
+          <div class="sub_Writing col-sm-12">
+            <a class="btn btn-default right_button_set" href="/posts/new">글쓰기</a>
+          </div>
+          <div class="col-sm-3"></div>
+           <div class="col-9">
+                <nav aria-label="Page navigation example" id="Pagenavigation">
+                  <ul class="pagination">
+                    <%
+                    var offset = 3;
+                    var partialQuery;
+                    if(urlQuery) partialQuery = "&"+urlQuery.replace(/page=(.*?)(&|$)/ig,"");
+                    %>
+                    <li class="page-item">
+                      <a class="page-link title" href="/posts?page=<%= 1 %><%= partialQuery %>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <% for(i=1;i<=maxPage;i++){ %>
+                      <% if(i<=offset || i>maxPage-offset || (i>=page-(offset-1) && i<=page+(offset-1))){ %>
+                        <% if(i != page){ %>
+                          <li class="page-item"><a class="page-link title" href="/posts?page=<%= i %><%= partialQuery %>"> <%= i %> </a></li>
+                          <% } else { %>
+                            <li class="page-item"> <a href="#" class="page-link title"><b><%= i %></b></a></li>
+                            <% } %>
+                            <% } else if(i == offset+1 || i == maxPage-offset){ %>
+                              <li class="page-item"><a href="#" class="page-link title">...</a></li>
+                              <% } %>
+                              <%}%>
+                    <li class="page-item">
+                      <a class="page-link title" href="/posts?page=<%= maxPage %><%= partialQuery %>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+            </div>
+
+            <div class="col-sm-3"></div>
+            <div class="search float_right col-sm-9">
+              <div class="row search_set">
+                <form class="checkValidation form-inline" action="/posts/" id="search">
+                  <select name="searchType" class="custom-select custom-select-sm col-4 search_select">
+                    <% var select %>
+                    <option value="title,body"
+                    <%= search.searchType=="title,body"?select="selected":"" %>>제목+본문</option>
+                    <option value="title"
+                    <%= search.searchType=="title"?select="selected":"" %>>제목</option>
+                    <option value="body"
+                    <%= search.searchType=="body"?select="selected":"" %>>본문</option>
+                  </select>
+                  <input class="searchform cvMinLength form-control mr-sm-2 col-5 search_select" placeholder="Search"
+                  cvMinLength="2"
+                  cvMinLenErrTo="#searchError"
+                  cvMinLenErrMsg="두글자이상입력."
+                  type="search" name="searchText" value="<%= select?search.searchText:"" %>">
+                  <button class="btn btn-outline-success btn-sm my-2 my-sm-0 col-2" type="submit">검색</button>
+                </form>
+              </div>
+              <div class="message" id="searchError"></div>
+            </div>
+
+        </div>
+
+      </div>
+
+        </div>
+    </div>
+
+    <footer>
+      <% include ../partials/footer %>
+   </footer>
+ </body>
+</html>

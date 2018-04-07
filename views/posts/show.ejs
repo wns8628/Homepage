@@ -1,0 +1,135 @@
+<!-- views/posts/show.ejs -->
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <% include ../partials/head %>
+ </head>
+ <body class="body">
+  <% include ../partials/nav %>
+
+  <div class="container post post-show row mx-auto mid_fix_body">
+
+    <!--  -->
+       <div class="col-sm-3 ac_parent">
+         <div class="about_col">
+          <div class="row">
+
+           <div id="paper"  class="col-sm-12">
+             <h2>게시판</h2>
+           </div>
+
+           <div class="col-sm-3"></div>
+           <div class="col-sm-8">
+             <a class="btn btn-outline-success btn-lg btn-block Writing" href="/posts/new">글쓰기
+               <span class="badge badge-pill badge-success">Go!</span>
+             </a>
+           </div>
+
+           <div class="col-sm-3"></div>
+           <div class="col-sm-8">
+            <%  include ./partials/nav ﻿%>
+           </div>
+
+         </div>
+       </div>
+      </div>
+    <!--  -->
+<div class="col-sm-9 sb_parent">
+  <div class="showBody">
+    <div class="buttons">
+      <a class="btn btn-default" href="/posts?<%= urlQuery %>">Back</a>
+    </div>
+    <div class="show_header">
+      <% include ./partials/header %>
+    </div>
+   <div class="contentBox">
+      <h3 class="contentBoxTop">
+        <%= post.numId %>.
+        <%= post.title %>
+      </h3>
+    <div class="row">
+      <div class="col-sm-6 show_Writinginformation_author">작성자 : <%= post.author.name %> ( <%= post.author.username %> ) %></div> <!-- 1 -->
+      <div class="col-sm-6 show_Writinginformation"><span>조회수</span> : <%= post.views %> |
+      <%= post.createdDate %> <%= post.createdTime %></div>
+        <div class="col-12 show_Writinginformation">
+          <% if(post.updatedAt) { %>
+          <span>수정된 날짜</span> : <%= post.updatedDate %> <%= post.updatedTime %>
+          <% }else{ %>
+            .
+        <% } %>
+        </div>
+    </div>
+    <div class="row">
+     <!-- <div class="col-sm-4 col-sm-push-8">
+      <div class="post-info">
+      </div>
+     </div>  -->
+     <div class="col-sm-8 col-sm-pull-4">
+
+      <div class="post-body"><%- post.body %></div>
+
+
+
+     </div> <!-- col end-->
+    </div> <!-- row end -->
+   </div> <!-- post-container end -->
+
+   <div class="buttons show_edit_and_delete_button">
+    <form action="/posts/<%= post._id %>?_method=delete" method="post" class="show_edit_and_delete">
+     <a class="btn btn-default" href="#" onclick="confirm('게시글을 삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
+    </form>
+    <a class="btn btn-default show_edit_and_delete" id="show_edit_and_delete" href="/posts/<%= post._id %>/edit">수정</a>
+   </div>
+
+   <!--  -->
+       <div class="comment row col-12">
+            <b class="col-12 commentName">댓글 (<%= post.comment?post.comment.length:"0" %>)</b>
+            <% if(post.comment) { %>
+              <% comments.forEach(function(comment){ %>
+                <div class="comment col-12 row">
+                  <div class="top col-12">
+                   <form class="delete"  method="post" action="/posts/<%=post._id%>/comments/<%=comment._id%>?_method=delete&<%= urlQuery %>">
+                    <b><%= comment.author.username %></b>
+                    (<%= comment.c_createdDate %> <%= comment.c_createdTime%>)
+                    <% if(user && user.equals(comment.author._id)) { %>
+                        <button type="button" onclick="confirm('댓글을 삭제하시겠습니까?')?this.parentElement.submit():null;">
+                          x
+                        </button>
+                    </form>
+                      <% } %>
+                  </div>
+                  <!-- <div class="col-2"> -->
+                  <!-- </div> -->
+                  <div class="commented col-12"><%= comment.body %></div>
+                </div>
+              <% }) %>
+            <% } %>
+
+            <form class="addComment checkValidation col-12 row" action="/posts/<%=post._id%>/comments?<%= urlQuery %>" method="post" >
+
+              <textarea class="cvRequired col-sm-10 addCommentArea form-control" type="text" name="body" cvRqErrMsg="comments is empty."
+               cvRqErrTo="#cvErrTitle" <%= user?"":"disabled" %>
+               placeholder="<%= user?"댓글 달기":"댓글을 달려면 로그인을 먼저 해주세요." %>" ></textarea>
+
+               <button class="col-2 btn btn-secondary com_btn" type="submit" <%= user?"":"disabled" %>>작성</button>
+
+               <!--모바일에서만보임  -->
+              <div class="col-1 com_btn_login"></div>
+              <a href="/login" class="col-4 btn btn-secondary com_btn_login_m">로그인</a>
+              <button class="col-4 btn btn-secondary com_btn_m com_btn_login_m" type="submit" <%= user?"":"disabled" %>>작성</button>
+               <!--  -->
+              <div id="cvErrTitle" class="message"></div>
+           </form>
+
+          </div>
+      <!--  -->
+
+  </div> <!--콜9일걸 -->
+ </div>
+</div> <!-- container end -->
+<footer>
+  <% include ../partials/footer %>
+</footer>
+ </body>
+</html>

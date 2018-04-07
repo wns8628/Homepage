@@ -1,0 +1,10 @@
+<!--게시판에서만 사용되는거  -->
+<% if(urlQuery == "group=1"){ %>
+    <h5>공지사항</h5>
+<% }else if(urlQuery == "group=2"){ %>
+    <h5>커뮤니티</h5>
+<% }else if(urlQuery == "group=3"){ %>
+    <h5>질문과 답변</h5>
+<% }else{ %>
+    <h5>전체글보기</h5>
+<% } %>

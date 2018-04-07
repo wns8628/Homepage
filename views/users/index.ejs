@@ -1,0 +1,40 @@
+<!-- views/users/index.ejs -->
+<!DOCTYPE html>
+<html>
+ <head>
+  <% include ../partials/head %>
+ </head>
+ <body class="body">
+  <% include ../partials/nav %>
+  <div class="user_body">
+    <div class="row container mx-auto user user-index">
+     <div class="usershowbody row col-sm-12">
+       <div class="col-sm-12 usershowtitle">
+         <%=Site_name %>
+       </div>
+       <div class="col-sm-12">
+         <div class="buttons">
+          <a class="btn btn-default" href="/">Back</a>
+         </div>
+         <div class="contentBoxUser">
+          <h3 class="contentBoxTop">회원목록</h3>
+          <ul class="floats">
+           <% if(users == null || users.length == 0){ %>
+            <div class="noData" colspan=100> 가입한 사람이 한명도 없습니다...</div>
+           <% } %>
+           <% users.forEach(function(user) { %>
+            <li>
+             <a href="/users/<%= user.username %>"><%= user.username %></a>
+            </li>
+           <% }) %>
+          </ul>
+         </div>
+       </div>
+     </div>
+    </div> <!-- container end -->
+  </div>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+ </body>
+</html>

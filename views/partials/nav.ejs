@@ -1,0 +1,40 @@
+<!-- nav  -->
+
+<!-- views/partials/nav.ejs -->
+<div id="brick" class=""></div>
+<div id="brick" class="fixed-top"></div>
+<nav id="nav" class="navbar navbar-expand-lg fixed-top navbar-dark container">
+  <a href="/"><div class="navbar-brand">Sejun Website</div></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- </div> -->
+  <div class="collapse navbar-collapse" id="myNavbar">
+   <ul class="navbar-nav mr-auto myNavbar">
+    <li class="nav-item"><a  class="nav-link" href="/about">About</a></li>
+    <li class="nav-item dropdown dropdown_Post_nav">
+      <a class="nav-link dropdown-toggle" href="/posts" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        게시판
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="/posts?group=">전체글보기</a>
+        <a class="dropdown-item" href="/posts?group=1">공지사항</a>
+        <a class="dropdown-item" href="/posts?group=2">커뮤니티</a>
+        <a class="dropdown-item" href="/posts?group=3">질문과 답변</a>
+      </div>
+    </li>
+   </ul>
+   <ul class="navbar-nav navbar-right myNavbar2">
+    <li class="nav-item"><a class="nav-link" href="/users">회원목록</a></li>
+      <% if(isAuthenticated){ %>
+    <li class="nav-item"><a class="nav-link" href="/users/<%= currentUser.username %>">내 정보</a></li>
+    <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
+      <% } else { %>
+    <li class="nav-item"><a class="nav-link" href="/users/new">회원가입</a></li>
+    <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
+      <% } %>
+   </ul>
+  </div>
+</nav>
+
+<!-- button에 data-target이 #myNavbar로 설정되어 있고, 이 버튼을 누를때마다 <div class="collapse navbar-collapse" id="myNavbar">가 보이거나 숨겨지게 됩니다. -->
