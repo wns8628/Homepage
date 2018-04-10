@@ -343,11 +343,11 @@ font-size: 13px;
   margin: 0;
 }
 #main_right{
-  height: 327px;
-  border: 2px solid gray;
-  background-color: lightgray;
-  font-family: 'Nanum Brush Script', cursive;
-  font-size: 25px;
+  height: 250px;
+  /* border: 2px solid gray; */
+  /* background-color: lightgray; */
+  /* font-family: 'Nanum Brush Script', cursive; */
+  /* font-size: 25px; */
   margin-bottom: 15px;
 }
 
@@ -636,7 +636,7 @@ font-size: 13px;
     padding-left: 0px;
   }
   #main_right{
-    margin-left: 3px;
+    margin-left: 0px;
   }
   .youtubebody{
     padding-left: 10px;
