@@ -12,6 +12,13 @@
 .help-block{
   color: tomato;
 }
+.content{
+  text-align: center;
+  padding-top: 50px;
+  background-color: black;
+  color: white;
+  height: 200px;
+}
 
 form label{
  padding: 3px;
@@ -37,7 +44,7 @@ form .form-group{
 }
 .ellipsis{
   display: block;
-  max-width: 80%;
+  max-width: 90%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -100,6 +107,7 @@ table {
  border-bottom: 1px solid #ccc;
  background-color: #F5F5F5;
  padding: 6px 15px;
+ word-wrap: break-word;
 }
 
 /* home style */
@@ -194,11 +202,12 @@ table {
 .post .posts .date{
  text-align: center;
  width: 100px;
- padding-right: 15px;
+ /* padding-right: 15px; */
 }
 .adate{
    width: 100px;
    font-size: 13px;
+   text-align: center;
 }
 
 /* user style */
@@ -224,12 +233,14 @@ table {
  display: inline-block;
  text-decoration:none;
  margin: 3px;
- background-color: #eee;
+ background-color: #646978;
+ color: white;
  padding: 3px 10px;
  border-radius: 3px;
 }
 .user-index ul li a:hover{
- background-color: #ccc;
+ background-color: #323746;
+ color: lightblue;
 }
 .user-edit hr{
  margin-top: 5px;
@@ -245,8 +256,9 @@ table {
 /* 댓글 */
 /* 1. 이부분은 float의 parent를 위한 부분입니다. 이렇게 설정해 놓으면 float이 parent밖으로 안튀어나오게 됩니다. CSS 꿀팁이죠. */
 
-
-
+.table-sm{
+font-size: 13px;
+}
 /* 커스텀마이징  네브부터  */
 #brick{
   height: 80px;
@@ -259,7 +271,7 @@ table {
   padding-left: 3px;
   padding-right: 0px;
   padding-top: 25px;
-  padding-bottom: 14px;
+  padding-bottom: 13px;
 }
 .navbar-brand{
   font-weight: bold;
@@ -278,22 +290,6 @@ table {
   padding-right: 20px;
 }
 
-/* 메인화면 */
-/* #main_div{
-  margin :0px;
-  margin-top: 0px;
-  max-width: 100%;
-  width: 1920px;
-  padding: 0;
- } */
-/* #main_img{
-  position:relative;
-  width:1920px;
-  height: 387px;
-  left:50%;
-  margin-left:-960px;
-  background-size: cover;
-} */
 .img-cover{
    position:relative;
    /* top: 80px; */
@@ -303,13 +299,6 @@ table {
    z-index:1;
    left: 0px;
    right: 0px;
-}
-.content{
-     text-align: center;
-     padding-top: 50px;
-     background-color: black;
-     color: white;
-     height: 200px;
 }
 .main_font{
    font-family: 'Nanum Brush Script', cursive;
@@ -321,6 +310,11 @@ table {
 }
 #searchError{
   color: tomato;
+  font-size: 11px;
+}
+#searchError1{
+  color: tomato;
+  font-size: 11px;
 }
 
 .body{
@@ -328,18 +322,23 @@ table {
   background-color :rgb(240, 243, 249);
 }
 .main_body{
-
+  background-color: white;
+  padding: 5px;
+}
+.mangabodymainbody{
+  background-color: white;
+  padding: 0px;
 }
 .mid_fix_body{
   padding: 0px;
 }
 
 #main_post_title h4{
-  margin-top: 27px;
+  /* margin-top: 27px; */
 }
 #more_color{
   color:black;
-  font-size: 19px;
+  font-size: 15px;
   font-weight: bold;
   margin: 0;
 }
@@ -459,11 +458,25 @@ table {
 .search_select{
   margin-right: 7px;
   font-size: 12px;
-  /* padding-left: 0px; */
+  padding-right: 0px;
+  padding-left: 6px;
+  width: 90px;
 }
-/* .searchform{
-  padding-right: 7px;
-} */
+#searchform{
+    width: 105px;
+}
+#mangasearchform{
+  width: 150px;
+  font-size: 13px;
+}
+#mangasearchform2{
+  width: 150px;
+  font-size: 13px;
+}
+.mangasearch{
+  padding-top: 6px;
+  padding-right: 10px;
+}
 
 /* show */
 .ac_parent{
@@ -513,15 +526,19 @@ table {
   background-color: rgb(244,244,244);
   margin: 0px;
   margin-bottom: 8px;
+  padding: 0px;
 }
 .commented{
   background-color: rgb(244,244,244);
   min-height: 50px;
   border-bottom: 1px Dotted lightgray;
+  padding-bottom: 10px;
+  word-wrap: break-word;
 }
 .addComment{
   margin-left: 0px;
-  padding: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-top: 5px;
   margin-bottom: 15px;
   /* padding-top: 15px; */
@@ -575,14 +592,55 @@ table {
   font-size: 12px;
 }
 
+/*  게시판 ? */
+.welcome_post{
+  border-top: lightgray solid 1px;
+  border-bottom: lightgray solid 1px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 8px;
+  padding-right : 8px;
+  margin: 0px;
+}
+
+
 /* 모바일하기전 안보일것듯 임시*/
 .com_btn_login_m{
   display: none; /*댓글달떄 모바일에 로그인버튼나오게*/
 }
-/* 모바일 */
+.mobileSearch{
+  display: none;
+}
 
+
+/* 모바일 */
 /* 화면이 550이하로 작아지면 */
 @media ( max-width: 576px ) {
+
+
+ .mobileSearch{
+   display: inline;
+}
+  html, body {
+    overflow-x: hidden;
+  }
+  /* 웰컴부분 */
+  .main_body{
+     padding: 0px;
+  }
+  #main_post_title{
+    /* padding-left: 10px; */
+    padding: 0px;
+  }
+  #more_color{
+    padding-left: 0px;
+  }
+  #main_right{
+    margin-left: 3px;
+  }
+  .youtubebody{
+    padding-left: 10px;
+  }
   /* 게시판인덱스부분 */
   .num , .view, .date{
     display: none;
@@ -613,9 +671,45 @@ table {
     width: 100px;
     margin: 5px;
   }
+  .addComment {
+    padding: 0px;
+  }
+  .sb_parent{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .showBody{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .mobiletop{
+    background-color:aliceblue;
+    padding-left: 5px;
+    padding-right: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .commentName{
+    background-color:darkgray;
+    padding-bottom: 7px;
+    padding-top: 7px;
+  }
+  .commented{
+    padding-left: 5px;
+    padding-right: 0px;
+    background-color:white;
+    min-height: 35px;
+  }
+  .comment{
+    margin-bottom: 0px;
+  }
+
 
   /* 어바웃모바일부분 */
  .about_aticle_body{
   padding-left: 0px;
  }
+
+
+
 }

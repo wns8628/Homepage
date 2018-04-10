@@ -32,7 +32,6 @@
     </div>
   </div>
 
-<!-- 가운데맞출려면 container 넣어~ -->
     <div class="post post-index col-sm-9 sb_parent">
      <div class="showBody">
        <div class="postshowname">
@@ -45,7 +44,7 @@
             <th class="num">Num</th>
             <th class="title">제목</th>
             <th class="view">조회수</th>
-            <th class="author">작성자</th> <!-- 1 -->
+            <th class="author">작성자</th>
             <th class="date">날짜</th>
           </tr>
         </thead>
@@ -63,9 +62,9 @@
                     <a  class="comments" href="/posts/<%= post._id %>?<%= urlQuery %>">(<%= post.comment.length %>)</a></span>
                   </td>
                   <td class="view"><%= post.views %></td>
-                  <td class="author"> <!-- 2 -->
-                    <div class="ellipsis"><%= post.author ? post.author.name : "" %></div> <!-- 3 -->
-                  </td>                        <!-- 작성자있는경우 이거              없으면 공백-->
+                  <td class="author">
+                    <div class=""><%= post.author ? post.author.name : "" %></div>
+                  </td>
                   <td class="date">
                     <%= post.createdDate %>
                   </td>
@@ -75,7 +74,6 @@
             </table>
 
         <div class="row">
-          <!-- <div class="col-3"></div> -->
           <div class="sub_Writing col-sm-12">
             <a class="btn btn-default right_button_set" href="/posts/new">글쓰기</a>
           </div>
@@ -116,10 +114,9 @@
             </div>
 
             <div class="col-sm-3"></div>
-            <div class="search float_right col-sm-9">
-              <div class="row search_set">
-                <form class="checkValidation form-inline" action="/posts/" id="search">
-                  <select name="searchType" class="custom-select custom-select-sm col-4 search_select">
+            <div class="search float_right col-sm-6">
+                <form class="checkValidation form-inline  " action="/posts/" id="search">
+                  <select name="searchType" class="custom-select custom-select-sm  search_select">
                     <% var select %>
                     <option value="title,body"
                     <%= search.searchType=="title,body"?select="selected":"" %>>제목+본문</option>
@@ -128,14 +125,13 @@
                     <option value="body"
                     <%= search.searchType=="body"?select="selected":"" %>>본문</option>
                   </select>
-                  <input class="searchform cvMinLength form-control mr-sm-2 col-5 search_select" placeholder="Search"
+                  <input id="searchform" class="searchform cvMinLength form-control mr-sm-2  search_select" placeholder="Search"
                   cvMinLength="2"
                   cvMinLenErrTo="#searchError"
                   cvMinLenErrMsg="두글자이상입력."
                   type="search" name="searchText" value="<%= select?search.searchText:"" %>">
-                  <button class="btn btn-outline-success btn-sm my-2 my-sm-0 col-2" type="submit">검색</button>
+                  <button class="btn btn-outline-success btn-sm my-2 my-sm-0 " type="submit">검색</button>
                 </form>
-              </div>
               <div class="message" id="searchError"></div>
             </div>
 
