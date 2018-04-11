@@ -87,7 +87,7 @@ router.put("/:username", util.isLoggedin, checkPermission ,function(req, res, ne
    }
    res.redirect("/users/"+user.username); //아디바꾼경우 일로 리다이렉트시켜야하니깐
   });
-  
+
  });
 });
 
@@ -98,8 +98,7 @@ module.exports = router;
 function checkPermission(req, res, next){
  User.findOne({username:req.params.username}, function(err, user){
   if(err) return res.json(err);
-  if(user.id != req.user.id) return util.noPermission(req, res);
-
+  if((user.id != req.user.id) && req.user.admin == 'false') return util.noPermission(req, res);
   next();
  });
 }

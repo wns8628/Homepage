@@ -284,7 +284,7 @@ module.exports = router;
 function checkPermission(req, res, next){
  Post.findOne({_id:req.params.id}, function(err, post){
   if(err) return res.json(err);
-  if(post.author != req.user.id) return util.noPermission(req, res);
+  if((post.author != req.user.id) && req.user.admin == 'false') return util.noPermission(req, res);
       //post.author은 req.body.author = req.user._id 위에서 넣어줘서
   next();
  });

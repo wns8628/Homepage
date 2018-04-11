@@ -27,7 +27,7 @@
    <ul class="navbar-nav navbar-right myNavbar2">
     <li class="nav-item"><a class="nav-link" href="/users">회원목록</a></li>
       <% if(isAuthenticated){ %>
-    <li class="nav-item"><a class="nav-link" href="/users/<%= currentUser.username %>">내 정보</a></li>
+    <li class="nav-item"><a class="nav-link" href="/users/<%= currentUser.username %>">내 정보( <%= currentUser.name%> )</a></li>
     <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
       <% } else { %>
     <li class="nav-item"><a class="nav-link" href="/users/new">회원가입</a></li>

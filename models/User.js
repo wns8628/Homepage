@@ -26,7 +26,11 @@ var userSchema = mongoose.Schema({
    type:String,
    match:[/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,"이메일 형식이 아닙니다."], // 1-3
    trim:true // 1-1
- }
+ },
+ admin:{ //관리자계정만들기~
+   type:String,
+   default : false,
+ },
 },{
  toObject:{virtuals:true}
 });
