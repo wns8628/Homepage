@@ -11,7 +11,7 @@ var app = express();
 
 
 //디비세팅
-mongoose.connect(process.env.my_post);
+mongoose.connect(process.env.v_MONGO_last);
 var db = mongoose.connection;
 db.once("open",function(){
   console.log("디비 연결됨!");
